@@ -15,28 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.elytrium.fastmotd.listener;
+package net.elytrium.commons.utils.reflection;
 
-import com.velocitypowered.api.event.Subscribe;
-import com.velocitypowered.api.event.proxy.ProxyPingEvent;
-import com.velocitypowered.api.proxy.InboundConnection;
-import net.elytrium.fastmotd.FastMOTD;
+public class ReflectionException extends RuntimeException {
 
-public class CompatPingListener {
-
-  private final FastMOTD plugin;
-
-  public CompatPingListener(FastMOTD plugin) {
-    this.plugin = plugin;
+  public ReflectionException(Throwable cause) {
+    this("An unexpected internal error was caught during the reflection operations.", cause);
   }
 
-  @Subscribe
-  public void onPing(ProxyPingEvent event) {
-    InboundConnection connection = event.getConnection();
-    event.setPing(this.plugin.getNextCompat(
-        connection.getProtocolVersion(),
-        connection.getVirtualHost()
-            .map(address -> address.getHostName() + ":" + address.getPort())
-            .orElse(null)));
+  public ReflectionException(String message, Throwable cause) {
+    super(message, cause);
   }
 }

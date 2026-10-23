@@ -1,2 +1,4 @@
 rootProject.name = 'FastMOTD'
 
+include 'fastmotd-velocity'
+include 'fastmotd-paper'

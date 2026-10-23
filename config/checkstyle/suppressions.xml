@@ -9,9 +9,9 @@
     <suppress files=".*[\\/]net[\\/]elytrium[\\/].*" checks="MissingJavadocMethod"/>
     <suppress files=".*[\\/]net[\\/]elytrium[\\/].*" checks="AbbreviationAsWordInName"/>
 
-    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/]Settings.java" checks="TypeName"/>
-    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/]Settings.java" checks="LineLength"/>
-    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/]Settings.java" checks="MemberName"/>
-    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/]Settings.java" checks="RequireThis"/>
-    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/]Settings.java" checks="AbbreviationAsWordInName"/>
+    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/].*Settings.java" checks="TypeName"/>
+    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/].*Settings.java" checks="LineLength"/>
+    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/].*Settings.java" checks="MemberName"/>
+    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/].*Settings.java" checks="RequireThis"/>
+    <suppress files=".*[\\/]net[\\/]elytrium[\\/].*[\\/].*Settings.java" checks="AbbreviationAsWordInName"/>
 </suppressions>

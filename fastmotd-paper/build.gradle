@@ -1,0 +1,29 @@
+//file:noinspection GroovyAssignabilityCheck
+
+plugins {
+    id("java")
+    id("com.gradleup.shadow")
+}
+
+java {
+    setSourceCompatibility(JavaVersion.VERSION_25)
+    setTargetCompatibility(JavaVersion.VERSION_25)
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:26.3.build.214-stable")
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.8")
+
+    implementation("net.elytrium:serializer:1.1.1")
+    implementation("it.unimi.dsi:fastutil-core:8.5.18")
+    implementation("org.bstats:bstats-bukkit:3.2.1")
+}
+
+shadowJar {
+    getArchiveClassifier().set("")
+
+    relocate("org.bstats", "net.elytrium.fastmotd.paper.thirdparty.org.bstats")
+    relocate("net.elytrium.serializer", "net.elytrium.fastmotd.paper.thirdparty.serializer")
+}
+
+assemble.dependsOn(shadowJar)

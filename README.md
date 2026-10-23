@@ -3,34 +3,37 @@
 # FastMOTD
 
 [![Join our Discord](https://img.shields.io/discord/775778822334709780.svg?logo=discord&label=Discord)](https://ely.su/discord)
-[![Proxy Stats](https://img.shields.io/bstats/servers/15640?logo=minecraft&label=Servers)](https://bstats.org/plugin/velocity/FastMOTD/15640)
-[![Proxy Stats](https://img.shields.io/bstats/players/15640?logo=minecraft&label=Players)](https://bstats.org/plugin/velocity/FastMOTD/15640)
 
-A MOTD plugin for Velocity that caches network packets. This helps it be the fastest one of the MOTD plugins. <br>
-Test server: [``ely.su``](https://hotmc.ru/minecraft-server-203216)
+Ultra-fast, native MOTD plugins for modern Minecraft infrastructure supporting **Paper 26.3** and **Velocity**.
 
-## Features
+## Modules
 
-- Fake online (percent + static sum)
-- Multiple descriptions/favicons support
-- Set information (custom text in the player list)
-- Caching of network packets
-- Max count "just add up" support
-- PNG built-in compression
+The project is structured into two optimized native submodules:
 
-## Comparison with other MOTD plugins
+### 1. `fastmotd-paper`
+- **Platform:** Native Paper plugin targeting **Paper 26.3** (`paper-plugin.yml`, `Java 25`).
+- **Features:**
+  - Modern `PaperServerListPingEvent` integration with Adventure Components (`net.kyori.adventure.text.Component`).
+  - Zero legacy compatibility hacks (deprecated iterator and profile APIs removed).
+  - High-performance caching for server descriptions, icons (`CachedServerIcon`), and custom sample player entries (`ListedPlayerInfo`).
+  - Virtual host domain routing (`StatusClient.getVirtualHost()`).
+  - Lightweight maintenance mode with `AsyncPlayerPreLoginEvent` rejection.
 
-Intel Core i9-9700K, DDR4 (a server that is not running any programs):
+### 2. `fastmotd-velocity`
+- **Platform:** Modern native Velocity proxy plugin.
+- **Features:**
+  - Direct `ProxyPingEvent` & `PreLoginEvent` event pipeline.
+  - Zero legacy backward-compatibility wrappers (`CompatPingListener` and pre-1.16 legacy serialization removed).
+  - High-performance caching for player counts, multi-description rotation, dynamic versions, and domain routing.
 
-| Plugin | Pings per second count |
-| - | - |
-| FastMOTD | 1 700 000 - 2 000 000 pings per second |
-| Without MOTD plugins | 900 000 - 1 100 000 pings per second |
-| MiniMOTD | 480 000 - 580 000 pings per second |
+## Building
 
-Intel Xeon E3-1270, DDR3 (a PC with several applications running):
-| Plugin | Pings per second count |
-| - | - |
-| FastMOTD | 840 000 - 1 000 000 pings per second |
-| Without MOTD plugins | 330 000 - 430 000 pings per second |
-| MiniMOTD | 150 000 - 200 000 pings per second |
+Requires **JDK 25** to compile:
+
+```bash
+./gradlew build
+```
+
+Built JAR artifacts will be located at:
+- `fastmotd-paper/build/libs/fastmotd-paper-1.1.0.jar`
+- `fastmotd-velocity/build/libs/fastmotd-velocity-1.1.0.jar`
